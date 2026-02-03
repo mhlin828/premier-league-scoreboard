@@ -109,7 +109,7 @@ export default function Home() {
     // 給 DOM 一點時間反應
     //await sleep(20);
 
-    scoreBoardVmi.boolean("isDataLoaded").value = false;
+    scoreBoardVmi!.boolean("isDataLoaded").value = false;
 
     try {
 
