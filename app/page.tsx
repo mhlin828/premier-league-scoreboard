@@ -132,7 +132,7 @@ export default function Home() {
       const imageCleanupTasks: Array<() => void> = [];
 
       // [時間差優化] 方案 A：先預載入所有圖片
-      console.log("開始預載入圖片...");
+      //console.log("開始預載入圖片...");
       const imagePromises = matches.map(match => 
         Promise.all([
           fetchAndDecodeImage(match.teams.home.logo),
@@ -144,7 +144,7 @@ export default function Home() {
       );
       
       const allImages = await Promise.all(imagePromises);
-      console.log("圖片預載入完成");
+      //console.log("圖片預載入完成");
 
       // 3. 生成新卡片 (現在圖片已在記憶體中，時間差會非常平均)
       for (let i = 0; i < matches.length; i++) {
