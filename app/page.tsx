@@ -23,7 +23,7 @@ export default function Home() {
     }),
     autoplay: true,
     autoBind: false,
-    useOffscreenRenderer: true,
+    useOffscreenRenderer: false,
   });
 
   const [isLoading, setIsLoading] = useState(false);
