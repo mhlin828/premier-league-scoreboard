@@ -117,13 +117,20 @@ export default function Home() {
       const response = await fetch(`/api/football/fixtures?round=${encodeURIComponent(roundName)}`);
       if (!response.ok) throw new Error(`Fixtures fetch failed: ${response.status}`);
       const data = await response.json();
-      const matches = data.response;
+      let matches = data.response;
 
       if (!matches || matches.length === 0) {
         console.warn("查無賽事資料");
         setIsLoading(false); 
         return;
       }
+
+      // [排序修正] API 會把 LIVE 比賽往前移，這裡依照日期重新排序
+      matches = matches.sort((a, b) => {
+        const dateA = new Date(a.fixture.date).getTime();
+        const dateB = new Date(b.fixture.date).getTime();
+        return dateA - dateB; // 由早到晚
+      });
 
       scoreBoardVmi.boolean("isDataLoaded").value = true;
 
